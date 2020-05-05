@@ -22,7 +22,7 @@ class BertNerModel(nn.Module):
         if module.bias is not None:
             module.bias.data.zero_()
 
-    def forward(self, input_ids, attention_mask):
+    def forward(self, input_ids, attention_mask=None):
         hidden_states = self.bert(input_ids=input_ids, attention_mask=attention_mask)[0]
         hidden_states = self.dropout(hidden_states)
         logits = self.classifier(hidden_states)
