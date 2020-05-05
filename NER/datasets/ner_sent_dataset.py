@@ -11,6 +11,7 @@ from torch.utils.data import Dataset
 
 class NerSentDataset(Dataset):
     def __init__(self, dataset_path, tokenizer, label2idx, max_seq_len=-1): # 默认不限制长度
+        super(NerSentDataset, self).__init__()
         self.max_seq_len = max_seq_len
         self.tokenizer = tokenizer
         self.label2idx = label2idx
