@@ -135,7 +135,7 @@ class NerTrainer:
                 tensor_labels = tensor_labels.to(self.device)
                 attention_mask = tensor_tokens.ne(self.tokenizer.pad_token_id).float()
                 loss, logits = self.model(input_ids=tensor_tokens, attention_mask=attention_mask, labels=tensor_labels)
-
+                # TODO f1 currently not support crf
                 values, indices = logits.topk(k=2)
                 batch_predict_labels = [self.idx2label[idx] for idx in logits.argmax(-1).view(-1).cpu().numpy().tolist()]
                 # 去掉 pad
